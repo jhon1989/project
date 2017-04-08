@@ -1,0 +1,13 @@
+.footer ul li {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.footer ul li a {
+  text-decoration: none;
+  color          : white;
+}
+
+.footer ul li a:hover {
+  text-decoration: none;
+}
