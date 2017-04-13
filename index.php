@@ -1,5 +1,5 @@
 <!DOCTYPE <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <title>Facturex</title>
   <meta charset="utf-8">
@@ -8,6 +8,7 @@
   <link style="text/css" rel="stylesheet" href="./other/css/index.css">
   <link style="text/css" rel="stylesheet" href="./other/css/footer.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
 </head>
 <body>
     <nav class="navbar navbar-inverse">
@@ -26,14 +27,14 @@
     				<li class="dropdown">
     					<a href="#" class="dropdown-toggle" data-toggle='dropdown'>Operaciones<span class="caret"></span></a>
     					<ul class='dropdown-menu'>
-    						<li><a href="index.php?page=inventario">Inventario</a></li>
+    						<li><a href="index.php?page=inventario" hreflang="es">Inventario</a></li>
     						<li><a href="index.php?page=factura">Ventas</a></li>
 
     					</ul>
     				</li>
 
     				<li class="dropdown">
-                <a href="#" class="drodown-togle" data-toggle='dropdown'>Parametros
+                <a href="#" class="drodown-togle" data-toggle='dropdown' hreflang="es">Parametros
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                 	<li><a href="index.php?page=pais">Pais</a></li>
@@ -41,18 +42,18 @@
                 </ul>
     				</li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle='dropdown'>Datos<span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle='dropdown' hreflang="es">Datos<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-    				        <li><a href="index.php?page=client">Clientes</a></li>
-    				        <li><a href="index.php?page=empleado">Empleados</a></li>
-    				        <li><a href="index.php?page=proveedor">Proveedores</a></li>
-    				        <li><a href="index.php?page=producto">Productos</a></li>
+    				        <li><a href="index.php?page=client" hreflang="es">Clientes</a></li>
+    				        <li><a href="index.php?page=employee" hreflang="es">Empleados</a></li>
+    				        <li><a href="index.php?page=provider" hreflang="es">Proveedores</a></li>
+    				        <li><a href="index.php?page=product" hreflang="es">Productos</a></li>
     				    </ul>
     				</li>
     			</ul>
     			<ul class="nav navbar-nav navbar-right">
-    				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Salir</a></li>
-    				<li><a href="index.php?page=usuario"><span class="glyphicon glyphicon-log-in"></span> Loguin</a></li>
+    				<li><a href="#" hreflang="es"><span class="glyphicon glyphicon-user"></span> Salir</a></li>
+    				<li><a href="index.php?page=usuario" hreflang="es"><span class="glyphicon glyphicon-log-in"></span> Loguin</a></li>
     			</ul>
     		</div>
     	</div>
@@ -92,5 +93,9 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./other/js/client/getClientForEdit.js"></script>
+<script type="text/javascript" src="./other/js/client/showClient.js"></script>
+<script type="text/javascript" src="./other/js/provider/getProviderForEdit.js"></script>
+<script type="text/javascript" src="./other/js/provider/showProvider.js"></script>
 
 </html>

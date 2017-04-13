@@ -3,27 +3,21 @@
 
   <div class="modal fade" id="create" role="dialog">
     <div class="modal-dialog">
-
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Crear cliente</h4>
+          <h4 class="modal-title">Crear Proveedor</h4>
         </div>
         <div class="modal-body">
-          <form role='form' method="POST" action="#">
+          <form role='form' method="POST" action="index.php?page=provider">
               <div class="form-group col-sm-12">
-               <label for="identification">Identificacion</label>
-               <input type="text" class="form-control" placeholder="Identificacion" name="identification" id="identification" required="required" maxlength="10"/>
+               <label for="Nit">Nit</label>
+               <input type="text" class="form-control" placeholder="nit" name="nit" id="nit" required="required" maxlength="10"/>
               </div>
               <div class="clearfix"></div>
               <div class="form-group col-sm-12">
-               <label for="name">Nombre</label>
-               <input type="text" class="form-control" placeholder="Nombre" name="name" id="name" required="required"/>
-              </div>
-              <div class="clearfix"></div>
-              <div class="form-group col-sm-12">
-                <label for="last_name">Apellido</label>
-                <input type="text" class="form-control" placeholder="Apellido" name="last_name" id="last_name"/>
+               <label for="business_name">Razon Social</label>
+               <input type="text" class="form-control" placeholder="Razon Social" name="business_name" id="business_name" required="required"/>
               </div>
               <div class="form-group col-sm-12">
                 <label for="address">Direccion</label>
@@ -43,7 +37,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="submit" value="create" name="create" class="btn btn-primary">Registrar Clientes</button>
+                <button type="submit" value="create" name="create" class="btn btn-primary">Registrar Proveedor</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </form>

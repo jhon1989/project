@@ -16,7 +16,7 @@ CREATE TABLE employee(
                       password VARCHAR(50),
                       status CHAR(1),
                       level INT,
-                      date_time DATETIME
+                      date_time TIMESTAMP
                     );
 
 /* Table client */
@@ -124,4 +124,4 @@ INSERT INTO employee (identification, name, last_name, phone, email, address, pa
 VALUES("119289438", "janer", "caceres", "31042329125", "jhon989@gmail.com", "cra 2", "12345", "1", "1");
 
 INSERT INTO client (identification, name, last_name, address, phone, email)
-VALUES("10123457", "carlos", "marin",  "cra 2", "314265987", "jhon989@gmail.com");
+VALUES(10123457, "carlos", "marin",  "cra 2", "314265987", "jhon989@gmail.com");

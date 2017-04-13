@@ -6,24 +6,20 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Editar cliente</h4>
+          <h4 class="modal-title">Editar Proveedor</h4>
         </div>
         <div class="modal-body">
               <form role='form' method="POST" action="#" class="form-edit">
                 <div class="form-group col-sm-12">
-                 <label for="identification">Identificacion</label>
-                 <input type="text" class="form-control" placeholder="Identificacion" name="identification" id="identification" readonly="true"/>
+                 <label for="identification">Nit</label>
+                 <input type="text" class="form-control" placeholder="Nit" name="nit" id="nit" readonly="true" required="required"/>
                 </div>
                 <div class="clearfix"></div>
                 <div class="form-group col-sm-12">
-                 <label for="name">Nombre</label>
-                 <input type="text" class="form-control" placeholder="Nombre" name="name" id="name"/>
+                 <label for="name">Razon Social</label>
+                 <input type="text" class="form-control" placeholder="Nombre" name="business_name" id="business_name" required="required"/>
                 </div>
                 <div class="clearfix"></div>
-                <div class="form-group col-sm-12">
-                	<label for="last_name">Apellido</label>
-                	<input type="text" class="form-control" placeholder="Apellido" name="last_name" id="last_name"/>
-                </div>
                 <div class="form-group col-sm-12">
                 	<label for="address">Direccion</label>
                 	<input type="text" class="form-control" placeholder="Direccion" name="address" id="address"/>
@@ -41,7 +37,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="modal-footer">
-                <button type="submit" value="edit" name="edit" class="btn btn-primary">Editar Clientes</button>
+                <button type="submit" value="edit" name="edit" class="btn btn-primary">Editar Proveedor</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </form>

@@ -1,20 +1,36 @@
 
 <?php
-   include './controllers/ClientController.php';
-   $controller = new ClientController();
+      function reload() {
+?>
+     <script type="text/javascript">
+        location.href="index.php?page=provider";
+     </script>
+
+<?php
+      }
+ ?>
+
+<?php
+   include './controllers/ProviderController.php';
+   $controller = new ProviderController();
 ?>
 
 <?php
-     function showMessage($message) {
-       header("Location:index.php?page=client");
-       echo "<script>";
-       echo "alert('$message')";
-       echo "</script>";
+   function message() {
+     if (isset($_SESSION["message"])) {
+?>
+      <div class="alert alert-danger alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        <strong>Danger!</strong> <?php echo $_SESSION["message"]; ?>
+      </div>
+<?php
      }
+
+  }
 ?>
 
 <section class="text-center">
-  <h1 class="text-cenetr" style="color:#004B8D;">LISTADO DE CLIENTES</h1>
+  <h1 class="text-cenetr" style="color:#004B8D;">LISTADO DE PROVEEDORES</h1>
 </section>
 
 <div class="clearfix" style="padding:10px"></div>
@@ -23,12 +39,12 @@
   <section class="container-fluid">
     <div class="row">
       <section class="col-md-6 col-xs-6">
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#create">Nuevo Cliente</button>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#create">Nuevo Empleado</button>
       </section>
       <section class="col-md-4 col-xs-4">
         <form class="form-horizontal" action="" method="post">
           <div class="form-group">
-            <input type="text" name="search" class="form-control">
+            <input type="text" name="search" class="form-control" autocomplete="off">
           </div>
 
       </section>
@@ -44,48 +60,47 @@
     <?php
     /* Code for save records */
           if ( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
-             $result = $controller->save();
-             showMessage($result);
+             echo $controller->save();
+             reload();
+             message();
           }
      ?>
 
      <?php
      /* Code for edit records */
            if ( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit']) ) {
-              $result = $controller->edit($_POST['name']);
-              showMessage($result);
-
+            $controller->edit($_POST['name']);
+            reload();
+            message();
            }
       ?>
 
     <?php
     /* Code for delete records */
          if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])) {
-            $result = $controller->delete();
-            showMessage($result);
+            echo $controller->delete();
+            reload();
+            message();
          }
     ?>
 
   <?php
-
        /* Code for search */
         if ( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['search'])) {
            $result = $controller->searchGeneral();
         } else {
-          $result = $controller->show();
+           $result = $controller->show();
         }
 
         if ( is_array($result)) {
-
     ?>
 
     <main>
         <table class="table table-bordered table table-condensed table-striped">
           <thead>
             <tr>
-              <th class="text-center">Identificacion</th>
-              <th class="text-center hidden-xs">Nombre</th>
-              <th class="text-center hidden-xs">Apellidos</th>
+              <th class="text-center">Nit</th>
+              <th class="text-center hidden-xs">Razon Social</th>
               <th class="text-center hidden-xs">Direccion</th>
               <th class="text-center hidden-xs hidden-sm">Telefono</th>
               <th class="text-center hidden-xs hidden-sm">Email</th>
@@ -97,21 +112,20 @@
           foreach ($result as $value) {
             ?>
 
-            <?php $string = $value->identification .','. $value->name .','. $value->last_name .','. $value->address .','. $value->phone .','. $value->email .','. $value->date_time ;?>
+            <?php $string = $value->nit .','. $value->business_name .','. $value->address .','. $value->phone .','. $value->email .','. $value->date_time ;?>
             <tr data-id="<?php echo $string ?>">
-              <td><?php echo $value->identification ?></td>
-              <td class="hidden-xs"><?php echo $value->name ?></td>
-              <td class="hidden-xs"><?php echo $value->last_name ?></td>
+              <td><?php echo $value->nit ?></td>
+              <td class="hidden-xs"><?php echo $value->business_name ?></td>
               <td class="hidden-xs"><?php echo $value->address ?></td>
               <td class="hidden-xs hidden-sm"><?php echo $value->phone ?></td>
               <td class="hidden-xs hidden-sm"><?php echo $value->email ?></td>
               <td class="hidden-xs hidden-sm"><?php echo $value->date_time ?></td>
               <td class="form-horizontal text-center" >
-                <form class="form-horizontal" action="" method="post" id="form-eliminar">
-                  <input type="hidden" name="identification" value="<?php echo $value->identification ?>">
+                <form class="form-horizontal" action="index.php?page=provider" method="post" id="form-eliminar">
+                  <input type="hidden" name="nit" value="<?php echo $value->nit ?>">
                   <button type="submit" name="delete" value="delete" class="btn btn-xs btn-danger text-center">Eliminar</button>
-                  <a href="#" class="btn btn-xs btn-warning btn-eliminar" data-toggle="modal" data-target="#editar">Editar</a>
-                  <a href="#" class="btn btn-xs btn-info btn-show" data-toggle="modal" data-target="#show">Ver</a>
+                  <a href="#" class="btn btn-xs btn-warning btn-edit-provider" data-toggle="modal" data-target="#editar">Editar</a>
+                  <a href="#" class="btn btn-xs btn-info btn-show-provider" data-toggle="modal" data-target="#show-provider">Ver</a>
                 </form>
               </td>
             </tr>

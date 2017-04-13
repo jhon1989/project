@@ -1,20 +1,36 @@
 
 <?php
-   include './controllers/ClientController.php';
-   $controller = new ClientController();
+      function reload() {
+?>
+     <script type="text/javascript">
+        location.href="index.php?page=employee";
+     </script>
+
+<?php
+      }
+ ?>
+
+<?php
+   include './controllers/EmployeeController.php';
+   $controller = new EmployeeController();
 ?>
 
 <?php
-     function showMessage($message) {
-       header("Location:index.php?page=client");
-       echo "<script>";
-       echo "alert('$message')";
-       echo "</script>";
+   function message() {
+     if (isset($_SESSION["message"])) {
+?>
+      <div class="alert alert-danger alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        <strong>Danger!</strong> <?php echo $_SESSION["message"]; ?>
+      </div>
+<?php
      }
+
+  }
 ?>
 
 <section class="text-center">
-  <h1 class="text-cenetr" style="color:#004B8D;">LISTADO DE CLIENTES</h1>
+  <h1 class="text-cenetr" style="color:#004B8D;">LISTADO DE EMPLEADOS</h1>
 </section>
 
 <div class="clearfix" style="padding:10px"></div>
@@ -23,12 +39,12 @@
   <section class="container-fluid">
     <div class="row">
       <section class="col-md-6 col-xs-6">
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#create">Nuevo Cliente</button>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#create">Nuevo Empleado</button>
       </section>
       <section class="col-md-4 col-xs-4">
         <form class="form-horizontal" action="" method="post">
           <div class="form-group">
-            <input type="text" name="search" class="form-control">
+            <input type="text" name="search" class="form-control" autocomplete="off">
           </div>
 
       </section>
@@ -44,25 +60,27 @@
     <?php
     /* Code for save records */
           if ( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
-             $result = $controller->save();
-             showMessage($result);
+             $controller->save();
+             reload();
+             message();
           }
      ?>
 
      <?php
      /* Code for edit records */
            if ( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit']) ) {
-              $result = $controller->edit($_POST['name']);
-              showMessage($result);
-
+            $controller->edit($_POST['name']);
+            reload();
+            message();
            }
       ?>
 
     <?php
     /* Code for delete records */
          if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])) {
-            $result = $controller->delete();
-            showMessage($result);
+            $controller->delete();
+            reload();
+            message();
          }
     ?>
 
@@ -72,7 +90,7 @@
         if ( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['search'])) {
            $result = $controller->searchGeneral();
         } else {
-          $result = $controller->show();
+           $result = $controller->show();
         }
 
         if ( is_array($result)) {
@@ -107,7 +125,7 @@
               <td class="hidden-xs hidden-sm"><?php echo $value->email ?></td>
               <td class="hidden-xs hidden-sm"><?php echo $value->date_time ?></td>
               <td class="form-horizontal text-center" >
-                <form class="form-horizontal" action="" method="post" id="form-eliminar">
+                <form class="form-horizontal" action="index.php?page=employee" method="post" id="form-eliminar">
                   <input type="hidden" name="identification" value="<?php echo $value->identification ?>">
                   <button type="submit" name="delete" value="delete" class="btn btn-xs btn-danger text-center">Eliminar</button>
                   <a href="#" class="btn btn-xs btn-warning btn-eliminar" data-toggle="modal" data-target="#editar">Editar</a>

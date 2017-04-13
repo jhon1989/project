@@ -1,9 +1,10 @@
 <?php
+session_start();
 
 require_once './model/Model.php';
 include './util/IterateResultQuery.php';
 
-class ClientController extends Model
+class EmployeeController extends Model
 {
     private $name;
     private $identification;
@@ -12,6 +13,9 @@ class ClientController extends Model
     private $phone;
     private $email;
     private $search;
+    private $password;
+    private $status;
+    private $level;
     private $table;
 
     public function __construct() {
@@ -22,7 +26,10 @@ class ClientController extends Model
       $this->phone          = isset($_POST['phone']) ? trim($_POST['phone']) : '';
       $this->email          = isset($_POST['email']) ? trim($_POST['email']) : '';
       $this->search         = isset($_POST['search']) ? trim($_POST['search']) : '';
-      $this->table          = 'client';
+      $this->password       = isset($_POST['password']) ? trim($_POST['password']) : '';
+      $this->status         = isset($_POST['status']) ? trim($_POST['status']) : '';
+      $this->level          = isset($_POST['level']) ? trim($_POST['level']) : '';
+      $this->table          = 'employee';
     }
 
     public function show() {
@@ -32,12 +39,12 @@ class ClientController extends Model
     }
 
     public function delete() {
-      $result = $this->getConnection()->query("DELETE FROM $this->table WHERE identification = $this->identification");
-      if ( $result > 0) {
-        return 'El cliente fue eliminado correctamente';
-      }
-
-      return 'No se pudo eliminar el cliente';
+        $result = $this->getConnection()->query("DELETE FROM $this->table WHERE identification = $this->identification");
+        if ( $result > 0) {
+          $_SESSION["message"] = 'El cliente fue eliminado correctamente';
+        } else {
+          $_SESSION["message"] = 'No se pudo eliminar el cliente';
+        }
     }
 
     public function edit() {
@@ -45,26 +52,26 @@ class ClientController extends Model
        $sql = "UPDATE $this->table SET name='{$this->name}', last_name='{$this->last_name}', address='{$this->address}', phone='{$this->phone}', email='{$this->email}' WHERE identification = '{$this->identification}'";
        $result = $this->getConnection()->query($sql);
 
-       return $name;
-
        if ( $result > 0) {
-         return 'El cliente fue actulizado correctamente';
+         $_SESSION["message"] = 'El cliente fue actulizado correctamente';
+       } else {
+         $_SESSION["message"] = 'No se pudo actualizar el cliente';
        }
 
-       return 'No se pudo actualizar el cliente';
     }
 
     public function save() {
 
-          $sql = "INSERT INTO $this->table (identification, name, last_name, address, phone, email)
-          VALUES('{$this->identification}', '{$this->name}', '{$this->last_name}', '{$this->address}', '{$this->phone}', '{$this->email}');";
+          $sql = "INSERT INTO $this->table (identification, name, last_name, address, phone, email, password, status, level)
+          VALUES('{$this->identification}', '{$this->name}', '{$this->last_name}', '{$this->address}', '{$this->phone}', '{$this->email}', '{$this->password}', '{$this->status}', '{$this->level}');";
           $result = $this->getConnection()->query($sql);
 
          if ( $result > 0) {
-           return 'El cliente fue creado correctamente';
+           $_SESSION["message"] = 'El cliente fue creado correctamente';
+         } else {
+           $_SESSION["message"] = 'No se pudo crear el cliente';
          }
 
-         return 'No se pudo crear el cliente';
     }
 
     public function searchGeneral() {
@@ -80,6 +87,7 @@ class ClientController extends Model
         }
         return false;
     }
+
 
     public function __destruct() {
       unset($this->identification);
