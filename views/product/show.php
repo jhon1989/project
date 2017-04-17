@@ -11,28 +11,40 @@
             <table class="table tabla-show">
               <thead>
                 <tr>
-                  <th>Nit</th>
-                  <td class="nit">1192894386</td>
+                  <th>Codigo</th>
+                  <td class="code">1192894386</td>
                 </tr>
                 <tr>
-                  <th>Reazon Social</th>
-                  <td class="business_name">Jhon Jane moreno</td>
+                  <th>Nombre</th>
+                  <td class="name">Jhon Jane moreno</td>
                 </tr>
                 <tr>
-                  <th>Direccion</th>
-                  <td class="Address">Jhon Jane moreno</td>
+                  <th>Tipo</th>
+                  <td class="type">Jhon Jane moreno</td>
                 </tr>
                 <tr>
-                  <th>Telefono</th>
-                  <td class="phone">Jhon Jane moreno</td>
+                  <th>Stock Maximo</th>
+                  <td class="st_max">Jhon Jane moreno</td>
                 </tr>
                 <tr>
-                  <th>Email</th>
-                  <td class="email">jhojamoca</td>
+                  <th>Stock Minimo</th>
+                  <td class="st_min">jhojamoca</td>
+                </tr>
+                <tr>
+                  <th>Valor</th>
+                  <td class="value">jhojamoca</td>
+                </tr>
+                <tr>
+                  <th>Cantidad</th>
+                  <td class="quantity">jhojamoca</td>
+                </tr>
+                <tr>
+                  <th>Categoria</th>
+                  <td class="category">jhojamoca</td>
                 </tr>
                 <tr>
                   <th>Fecha</th>
-                  <td class="date">Jhon Jane moreno</td>
+                  <td class="date_time">Jhon Jane moreno</td>
                 </tr>
               </thead>
             </table>

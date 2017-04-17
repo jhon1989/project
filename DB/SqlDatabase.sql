@@ -55,7 +55,7 @@ CREATE TABLE product (
                       code_produc INT PRIMARY KEY,
                       name VARCHAR(250),
                       type_measure VARCHAR(10),
-                      stock_maximoSHOW INT,
+                      stock_maximo INT,
                       stock_minimo INT,
                       unit_value FLOAT(2),
                       quantity INT,
@@ -125,3 +125,6 @@ VALUES("119289438", "janer", "caceres", "31042329125", "jhon989@gmail.com", "cra
 
 INSERT INTO client (identification, name, last_name, address, phone, email)
 VALUES(10123457, "carlos", "marin",  "cra 2", "314265987", "jhon989@gmail.com");
+
+INSERT INTO product (code_produc, name, type_measure, stock_maximo, stock_minimo, unit_value, quantity, nit_provider, id_category)
+VALUES(0002, "manzana", "fruta", 100, 10, 100000, 20, 1, 1);

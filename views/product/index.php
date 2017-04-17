@@ -3,7 +3,7 @@
       function reload() {
 ?>
      <script type="text/javascript">
-        location.href="index.php?page=provider";
+        location.href="index.php?page=product";
      </script>
 
 <?php
@@ -11,17 +11,24 @@
  ?>
 
 <?php
-   include './controllers/ProviderController.php';
-   $controller = new ProviderController();
+   include './controllers/ProductController.php';
+   $controller = new ProductController();
 ?>
 
 <?php
    function message() {
-     if (isset($_SESSION["message"])) {
+     if (isset($_COOKIE['message']) && isset($_COOKIE['message']) && $_COOKIE['type_message'] == 'danger') {
 ?>
       <div class="alert alert-danger alert-dismissable">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-        <strong>Danger!</strong> <?php echo $_SESSION["message"]; ?>
+        <strong>Opp!</strong> <?php echo $_COOKIE['message']; ?>
+      </div>
+<?php
+     } elseif (isset($_COOKIE['message']) && isset($_COOKIE['message']) && $_COOKIE['type_message'] == 'success') {
+?>
+      <div class="alert alert-success alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        <strong>Opp!</strong> <?php echo $_COOKIE['message']; ?>
       </div>
 <?php
      }
@@ -30,7 +37,7 @@
 ?>
 
 <section class="text-center">
-  <h1 class="text-cenetr" style="color:#004B8D;">LISTADO DE PROVEEDORES</h1>
+  <h1 class="text-cenetr" style="color:#004B8D;">LISTADO DE PRODUCTOS</h1>
 </section>
 
 <div class="clearfix" style="padding:10px"></div>
@@ -39,7 +46,7 @@
   <section class="container-fluid">
     <div class="row">
       <section class="col-md-6 col-xs-6">
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#create">Nuevo Empleado</button>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#create">Nuevo Producto</button>
       </section>
       <section class="col-md-4 col-xs-4">
         <form class="form-horizontal" action="" method="post">
@@ -60,9 +67,8 @@
     <?php
     /* Code for save records */
           if ( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
-             echo $controller->save();
+             $controller->save();
              reload();
-             message();
           }
      ?>
 
@@ -90,6 +96,7 @@
            $result = $controller->searchGeneral();
         } else {
            $result = $controller->show();
+           message();
         }
 
         if ( is_array($result)) {
@@ -99,11 +106,14 @@
         <table class="table table-bordered table table-condensed table-striped">
           <thead>
             <tr>
-              <th class="text-center">Nit</th>
-              <th class="text-center hidden-xs">Razon Social</th>
-              <th class="text-center hidden-xs">Direccion</th>
-              <th class="text-center hidden-xs hidden-sm">Telefono</th>
-              <th class="text-center hidden-xs hidden-sm">Email</th>
+              <th class="text-center">Codigo</th>
+              <th class="text-center hidden-xs">Nombre</th>
+              <th class="text-center hidden-xs">Tipo</th>
+              <th class="text-center hidden-xs hidden-sm">St Maximo</th>
+              <th class="text-center hidden-xs hidden-sm">St Minimo</th>
+              <th class="text-center hidden-xs hidden-sm">Valor</th>
+              <th class="text-center hidden-xs hidden-sm">Cantidad</th>
+              <th class="text-center hidden-xs hidden-sm">Categoria</th>
               <th class="text-center hidden-xs hidden-sm">Fecha</th>
               <th class="text-center">Opciones</th>
             </tr>
@@ -112,20 +122,23 @@
           foreach ($result as $value) {
             ?>
 
-            <?php $string = $value->nit .','. $value->business_name .','. $value->address .','. $value->phone .','. $value->email .','. $value->date_time ;?>
+            <?php $string = $value->code_produc .','. $value->name .','. $value->type_measure .','. $value->stock_maximo .','. $value->stock_minimo .','. $value->unit_value .','. $value->quantity .','. $value->id_category .','. $value->date_time;?>
             <tr data-id="<?php echo $string ?>">
-              <td><?php echo $value->nit ?></td>
-              <td class="hidden-xs"><?php echo $value->business_name ?></td>
-              <td class="hidden-xs"><?php echo $value->address ?></td>
-              <td class="hidden-xs hidden-sm"><?php echo $value->phone ?></td>
-              <td class="hidden-xs hidden-sm"><?php echo $value->email ?></td>
+              <td><?php echo $value->code_produc ?></td>
+              <td class="hidden-xs"><?php echo $value->name ?></td>
+              <td class="hidden-xs"><?php echo $value->type_measure ?></td>
+              <td class="hidden-xs hidden-sm"><?php echo $value->stock_maximo ?></td>
+              <td class="hidden-xs hidden-sm"><?php echo $value->stock_minimo ?></td>
+              <td class="hidden-xs hidden-sm"><?php echo $value->unit_value ?></td>
+              <td class="hidden-xs hidden-sm"><?php echo $value->quantity ?></td>
+              <td class="hidden-xs hidden-sm"><?php echo $value->id_category ?></td>
               <td class="hidden-xs hidden-sm"><?php echo $value->date_time ?></td>
               <td class="form-horizontal text-center" >
-                <form class="form-horizontal" action="index.php?page=provider" method="post" id="form-eliminar">
-                  <input type="hidden" name="nit" value="<?php echo $value->nit ?>">
+                <form class="form-horizontal" action="index.php?page=product" method="post" id="form-eliminar">
+                  <input type="hidden" name="code" value="<?php echo $value->code_produc ?>">
                   <button type="submit" name="delete" value="delete" class="btn btn-xs btn-danger text-center">Eliminar</button>
-                  <a href="#" class="btn btn-xs btn-warning btn-edit-provider" data-toggle="modal" data-target="#editar">Editar</a>
-                  <a href="#" class="btn btn-xs btn-info btn-show-provider" data-toggle="modal" data-target="#show-provider">Ver</a>
+                  <a href="#" class="btn btn-xs btn-warning btn-edit-product" data-toggle="modal" data-target="#editar">Editar</a>
+                  <a href="#" class="btn btn-xs btn-info btn-show-product" data-toggle="modal" data-target="#show-provider">Ver</a>
                 </form>
               </td>
             </tr>

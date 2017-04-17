@@ -8,7 +8,7 @@
   <link style="text/css" rel="stylesheet" href="./other/css/index.css">
   <link style="text/css" rel="stylesheet" href="./other/css/footer.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css?family=Asar|Roboto" rel="stylesheet"> 
 </head>
 <body>
     <nav class="navbar navbar-inverse">
@@ -28,13 +28,13 @@
     					<a href="#" class="dropdown-toggle" data-toggle='dropdown'>Operaciones<span class="caret"></span></a>
     					<ul class='dropdown-menu'>
     						<li><a href="index.php?page=inventario" hreflang="es">Inventario</a></li>
-    						<li><a href="index.php?page=factura">Ventas</a></li>
+    						<li><a href="index.php?page=bill">Ventas</a></li>
 
     					</ul>
     				</li>
 
     				<li class="dropdown">
-                <a href="#" class="drodown-togle" data-toggle='dropdown' hreflang="es">Parametros
+                <a href="#" class="drodown-togle" data-toggle='dropdown' hreflang="es">Configuracion
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                 	<li><a href="index.php?page=pais">Pais</a></li>
@@ -73,12 +73,12 @@
     			       }
     			       else
     			       {
-    			       	 echo '<h2>No se pudo encontrar el recurso</h2>';
+    			       	 require_once('views/principal/index.php');
     			       }
     			    }
     			    else
     			    {
-    			    	echo '<h2>Herror fatal intentelo mas tarde</h2>';
+    			    	require_once('views/principal/index.php');
     			    }
     			?>
     		</div>
@@ -97,5 +97,8 @@
 <script type="text/javascript" src="./other/js/client/showClient.js"></script>
 <script type="text/javascript" src="./other/js/provider/getProviderForEdit.js"></script>
 <script type="text/javascript" src="./other/js/provider/showProvider.js"></script>
+<script type="text/javascript" src="./other/js/product/getProductForEdit.js"></script>
+<script type="text/javascript" src="./other/js/product/showProduct.js"></script>
+
 
 </html>
