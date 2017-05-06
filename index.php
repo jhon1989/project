@@ -8,7 +8,12 @@
   <link style="text/css" rel="stylesheet" href="./other/css/index.css">
   <link style="text/css" rel="stylesheet" href="./other/css/footer.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Asar|Roboto" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css?family=Asar|Roboto" rel="stylesheet"> compartir pantalla en skypecompartir pantalla en skype
+  <style media="screen">
+  #div {
+    background-image: url("https://mdn.mozillademos.org/files/6457/mdn_logo_only_color.png");
+  }
+  </style>
 </head>
 <body>
     <nav class="navbar navbar-inverse">
@@ -89,6 +94,9 @@
     <div class="container-footer">
       <?php include 'footer.php'; ?>
     </div>
+
+<div id="div" class="div" style="background: url(fondo.gif) no-repeat center center;">
+
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
